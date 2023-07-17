@@ -35,7 +35,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </Link>
       )}
       <h3 className="text-xl-regular">{product.title}</h3>
-
+      
       <p className="text-base-regular">{product.description}</p>
 
       {product.variants.length > 1 && (
