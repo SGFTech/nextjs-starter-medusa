@@ -67,3 +67,11 @@ export type InfiniteProductPage = {
     count: number
   }
 }
+
+
+export interface CreateContactUsInput {
+  name: string;
+  email: string;
+  subject: string;
+  description: string;
+}

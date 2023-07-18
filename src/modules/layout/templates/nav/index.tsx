@@ -5,6 +5,9 @@ import Hamburger from "@modules/common/components/hamburger"
 import CartDropdown from "@modules/layout/components/cart-dropdown"
 import DropdownMenu from "@modules/layout/components/dropdown-menu"
 import MobileMenu from "@modules/mobile-menu/templates"
+import DesktopHit from "@modules/search/components/desktop-hit"
+import InstantSearchBar from "@modules/search/components/instant-search"
+
 import DesktopSearchModal from "@modules/search/templates/desktop-search-modal"
 import clsx from "clsx"
 import Link from "next/link"
@@ -72,15 +75,12 @@ const Nav = () => {
             </div>
           </div>
 
-          <div className="flex items-center h-full">
-            <Link href="/" className="text-xl-semi uppercase">
-              Acme
-            </Link>
+          <div className="flex items-center h-full border-none">
+            <InstantSearchBar hits={DesktopHit}/>
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-6 h-full">
-              {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
               <Link href="/account">Account</Link>
             </div>
             <CartDropdown />

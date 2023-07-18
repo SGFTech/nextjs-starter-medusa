@@ -1,12 +1,17 @@
 import React from "react"
 import { IconProps } from "types/icon"
 
+
 const Search: React.FC<IconProps> = ({
   size = "16",
   color = "currentColor",
   ...attributes
 }) => {
+
+  
+
   return (
+    
     <svg
       width={size}
       height={size}
@@ -20,6 +25,7 @@ const Search: React.FC<IconProps> = ({
         fill={color}
       />
     </svg>
+    
   )
 }
 
