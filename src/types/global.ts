@@ -68,6 +68,21 @@ export type InfiniteProductPage = {
   }
 }
 
+export interface Attachment {
+  id: string;
+  original: string;
+  thumbnail: string;
+  __typename?: string;
+  slug?: string;
+}
+
+export interface Banner {
+  id: string;
+  title: string;
+  description: string;
+  image: Attachment;
+}
+
 
 export interface CreateContactUsInput {
   name: string;

@@ -27,6 +27,7 @@ interface ProductContext {
   increaseQuantity: () => void
   decreaseQuantity: () => void
   addToCart: () => void
+  removeFromCart:() => void
 }
 
 const ProductActionContext = createContext<ProductContext | null>(null)
@@ -45,7 +46,7 @@ export const ProductProvider = ({
   const [maxQuantityMet, setMaxQuantityMet] = useState<boolean>(false)
   const [inStock, setInStock] = useState<boolean>(true)
 
-  const { addItem } = useStore()
+  const { addItem,updateItem,deleteItem } = useStore()
   const { cart } = useCart()
   const variants = product.variants as unknown as Variant[]
 
@@ -130,6 +131,15 @@ export const ProductProvider = ({
     }
   }
 
+  const removeFromCart = () => {
+    
+    if (variant) {
+      const lineToRemove = cart?.items.find(i=>i.variant_id==variant.id)
+      if(lineToRemove)
+      deleteItem(lineToRemove.id)
+    }
+  }
+
   const increaseQuantity = () => {
     const maxQuantity = variant?.inventory_quantity || 0
 
@@ -161,6 +171,7 @@ export const ProductProvider = ({
         variant,
         addToCart,
         updateOptions,
+        removeFromCart,
         decreaseQuantity,
         increaseQuantity,
         formattedPrice,

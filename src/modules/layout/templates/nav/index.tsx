@@ -74,11 +74,11 @@ const Nav = () => {
               <DropdownMenu />
             </div>
           </div>
-
+          {!pathname.includes("/search") && (
           <div className="flex items-center h-full border-none">
             <InstantSearchBar hits={DesktopHit}/>
           </div>
-
+          )}
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <div className="hidden small:flex items-center gap-x-6 h-full">
               <Link href="/account">Account</Link>

@@ -2,13 +2,14 @@ import CollectionTemplate from "@modules/collections/templates"
 import { Metadata } from "next"
 
 type Props = {
-  params: { handle: string }
+  params: { handle: string;locale:string }
 }
 
 const BASEURL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:8000"
 
-async function getCollection(handle: string) {
-  const res = await fetch(`${BASEURL}/collections?handle=${handle}`)
+async function getCollection(handle: string,locale:String) {
+  console.log(handle)
+  const res = await fetch(`${BASEURL}/${locale}/collections?handle=${handle}`)
 
   if (!res.ok) {
     throw new Error(`Failed to fetch collection: ${handle}`)
@@ -18,7 +19,7 @@ async function getCollection(handle: string) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { collection } = await getCollection(params.handle)
+  const { collection } = await getCollection(params.handle,params.locale)
 
   return {
     title: `${collection.title} | Acme Store`,
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CollectionPage({ params }: Props) {
-  const { collection } = await getCollection(params.handle)
+  const { collection } = await getCollection(params.handle,params.locale)
 
   return <CollectionTemplate collection={collection} />
 }

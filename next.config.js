@@ -28,8 +28,12 @@ images: {
     "medusa-public-images.s3.eu-west-1.amazonaws.com",
     "localhost",
     "medusa-server-testing.s3.amazonaws.com",
-    "cdn.shopify.com"
+    "cdn.shopify.com",
+    "placehold.co",
+    "pickbazarlaravel.s3.ap-southeast-1.amazonaws.com",
   ],
+  dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
 }, staticPageGenerationTimeout:2000,
 reactStrictMode: true,
 

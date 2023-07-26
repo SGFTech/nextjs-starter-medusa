@@ -4,6 +4,24 @@ import { Routes } from "./routes";
 export const siteSettings = {
     name: "Source Good Food",
     description: "",
+    
+    Banner:[{
+        id: "banner-1",
+        type_id: "bakery",
+        title: 'Get Your Ingredients Delivered',
+        description:
+          'Get your favorite ingredients delivered to your doorsteps at any time',
+        image: {
+          id: '' + 908,
+          original:
+            'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/bakery.jpg',
+          thumbnail:
+            'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/bakery-thumbnail.jpg',
+          created_at: '2021-07-17T13:22:34.000000Z',
+          updated_at: '2021-07-17T13:22:34.000000Z',
+        },
+      }],
+    
     logo: {
         url: "/logo.png",
         alt: "Source Good Food",

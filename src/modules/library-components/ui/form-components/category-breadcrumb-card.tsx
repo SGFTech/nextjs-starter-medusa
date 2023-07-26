@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import ArrowForward from '@/assets/arrow-forward.png';
 import BreadcrumbButton from './breadcrumb-button';
 import { Image } from './image'
@@ -36,7 +36,7 @@ interface CategoryBreadcrumbProps {
 const CategoryBreadcrumb: React.FC<CategoryBreadcrumbProps> = ({
   categories,
 }) => {
-  const  t  = useTranslations('common');
+  const t = useTranslations('common');
   const router = useRouter();
   const { pathname, query } = router;
 

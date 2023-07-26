@@ -2,12 +2,13 @@
 
 import { useAccount } from "@lib/context/account-context"
 import AddressBook from "../components/address-book"
-import { useTranslation } from "next-i18next";
+import { useTranslations } from "next-intl"
+
 
 
 const AddressesTemplate = () => {
   const { customer, retrievingCustomer } = useAccount()
-  const { t } = useTranslation();
+  const t = useTranslations("common");
 
   if (retrievingCustomer || !customer) {
     return null

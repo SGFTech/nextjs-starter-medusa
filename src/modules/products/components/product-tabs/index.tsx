@@ -1,4 +1,5 @@
 import { Tab } from "@headlessui/react"
+import { useDetailedContent } from "@lib/hooks/use-detailed-content"
 import { Product } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import Back from "@modules/common/icons/back"
@@ -6,6 +7,8 @@ import FastDelivery from "@modules/common/icons/fast-delivery"
 import Refresh from "@modules/common/icons/refresh"
 import clsx from "clsx"
 import { useMemo } from "react"
+import DescriptionTable from "../product-description/description-table"
+
 
 type ProductTabsProps = {
   product: PricedProduct
@@ -16,7 +19,8 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
     return [
       {
         label: "Product Information",
-        component: <ProductInfoTab product={product} />,
+        component: content.data?(<DescriptionTable content={content.data}/>):
+        (<ProductInfoTab product={product} />),
       },
       {
         label: "Shipping & Returns",
@@ -24,7 +28,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       },
     ]
   }, [product])
-
+  const content = useDetailedContent("product", product.id)
   return (
     <div>
       <Tab.Group>
@@ -58,9 +62,14 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
+
+  
+
+  
   return (
     <Tab.Panel className="text-small-regular py-8">
       <div className="grid grid-cols-2 gap-x-8">
+      
         <div className="flex flex-col gap-y-4">
           <div>
             <span className="font-semibold">Material</span>
@@ -89,7 +98,9 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             </p>
           </div>
         </div>
+        
       </div>
+      
       {product.tags?.length ? (
         <div>
           <span className="font-semibold">Tags</span>

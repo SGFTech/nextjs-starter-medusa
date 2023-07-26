@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function CollectionPage({ params }: Props) {
+export default async function ProductPage({ params }: Props) {
   const { products } = await getProducts(params.handle)
 
   return <ProductTemplate product={products[0]} />

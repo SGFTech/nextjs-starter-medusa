@@ -7,14 +7,18 @@ import clsx from "clsx"
 import Link from "next/link"
 import React, { useMemo } from "react"
 import { Product } from "types/medusa"
+import DescriptionTable from "../product-description/description-table"
+import { useDetailedContent } from "@lib/hooks/use-detailed-content"
 
 type ProductActionsProps = {
   product: PricedProduct
+  locale:string
 }
 
-const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
+const ProductActions: React.FC<ProductActionsProps> = ({ product,locale="en" }) => {
   const { updateOptions, addToCart, options, inStock, variant } =
     useProductActions()
+  
 
   const price = useProductPrice({ id: product.id!, variantId: variant?.id })
 
@@ -23,21 +27,24 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
     return variantPrice || cheapestPrice || null
   }, [price])
-
+  
   return (
     <div className="flex flex-col gap-y-2">
-      {product.collection && (
+      
+      {
+      product.collection && (
         <Link
-          href={`/collections/${product.collection.handle}`}
+          href={`/${locale}/collections/${product.collection.handle}`}
           className="text-small-regular text-gray-700"
         >
-          {product.collection.title}
+          {product.collection.title} {locale}
         </Link>
       )}
       <h3 className="text-xl-regular">{product.title}</h3>
       
+      {/*
       <p className="text-base-regular">{product.description}</p>
-
+      */}
       {product.variants.length > 1 && (
         <div className="my-8 flex flex-col gap-y-6">
           {(product.options || []).map((option) => {

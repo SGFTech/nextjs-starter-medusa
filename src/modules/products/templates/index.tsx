@@ -9,6 +9,9 @@ import React, { useRef } from "react"
 import ImageGallery from "../components/image-gallary"
 import MobileActions from "../components/mobile-actions"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
+import ProductCard from "../components/cards/card"
+import { productCardType } from "@lib/constants"
+import { Product } from "@medusajs/medusa"
 
 type ProductTemplateProps = {
   product: PricedProduct

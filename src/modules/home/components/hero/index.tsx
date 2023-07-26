@@ -1,9 +1,17 @@
+"use client"
 import UnderlineLink from "@modules/common/components/underline-link"
 import Image from "next/image"
-
+const images = [
+  "/img/1.jpg",
+  "/img/pexels-jean-balzan-675439.jpg",
+  "/img/pexels-jean-balzan-675439.jpg",
+  
+];
 const Hero = () => {
   return (
     <div className="h-[90vh] w-full relative">
+      
+      {/*}
       <div className="text-white absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:text-left small:justify-end small:items-start small:p-32">
         <h1 className="text-2xl-semi mb-4 drop-shadow-md shadow-black">
           Summer styles are finally here
@@ -27,8 +35,9 @@ const Hero = () => {
         style={{
           objectFit: "cover",
         }}
-      />
-    </div>
+      />*/}
+      </div>
+    
   )
 }
 

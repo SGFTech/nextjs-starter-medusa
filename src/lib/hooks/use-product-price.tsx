@@ -43,8 +43,8 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
     const cheapestVariant = variants.reduce((prev, curr) => {
       return prev.calculated_price < curr.calculated_price ? prev : curr
     })
-
     return {
+    
       calculated_price: formatAmount({
         amount: cheapestVariant.calculated_price,
         region: cart.region,
@@ -59,6 +59,36 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
       percentage_diff: getPercentageDiff(
         cheapestVariant.original_price,
         cheapestVariant.calculated_price
+      ),
+    }
+  }, [product, cart?.region])
+
+  const maxPrice = useMemo(() => {
+    if (!product || !product.variants?.length || !cart?.region) {
+      return null
+    }
+
+    const variants = product.variants as unknown as CalculatedVariant[]
+
+    const mostExpensiveVariant = variants.reduce((prev, curr) => {
+      return prev.calculated_price > curr.calculated_price ? prev : curr
+    })
+    return {
+    
+      calculated_price: formatAmount({
+        amount: mostExpensiveVariant.calculated_price,
+        region: cart.region,
+        includeTaxes: false,
+      }),
+      original_price: formatAmount({
+        amount: mostExpensiveVariant.original_price,
+        region: cart.region,
+        includeTaxes: false,
+      }),
+      price_type: mostExpensiveVariant.calculated_price_type,
+      percentage_diff: getPercentageDiff(
+        mostExpensiveVariant.original_price,
+        mostExpensiveVariant.calculated_price
       ),
     }
   }, [product, cart?.region])
@@ -97,6 +127,7 @@ const useProductPrice = ({ id, variantId }: useProductPriceProps) => {
 
   return {
     product,
+    maxPrice,
     cheapestPrice,
     variantPrice,
     isLoading,

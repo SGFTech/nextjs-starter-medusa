@@ -1,6 +1,8 @@
 import { Image as MedusaImage } from "@medusajs/medusa"
 import Image from "next/image"
 import { useRef } from "react"
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 type ImageGalleryProps = {
   images: MedusaImage[]
@@ -22,6 +24,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
 
   return (
     <div className="flex items-start relative">
+      {/*
       <div className="hidden small:flex flex-col gap-y-4 sticky top-20">
         {images.map((image, index) => {
           return (
@@ -47,7 +50,9 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
           )
         })}
       </div>
-      <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
+      */}
+      <div className="flex flex-col flex-1 small:mx-16 gap-y-4 ">
+      <Carousel className="h-3/4">
         {images.map((image, index) => {
           return (
             <div
@@ -62,7 +67,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
                 className="absolute inset-0"
                 alt={`Product image ${index + 1}`}
                 fill
-                sizes="100vw"
+                sizes="50vw"
                 style={{
                   objectFit: "cover",
                 }}
@@ -70,6 +75,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
             </div>
           )
         })}
+        </Carousel>
       </div>
     </div>
   )

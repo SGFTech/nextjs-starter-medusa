@@ -1,6 +1,7 @@
 import parse from "html-react-parser";
-type Props = {
-    description: Record<string, any>;
+import { useMedusa } from "medusa-react";
+type DescriptionTableProps = {
+    content: Record<string,any>;
     specifiedKeys?: string[];
 };
 /**
@@ -77,10 +78,12 @@ const OnlyOneField: React.FC<{
     );
 };
 
-const DescriptionTable: React.FC<Props> = ({ description, specifiedKeys }) => {
-    const originalkeys = Object.keys(description);
+export const DescriptionTable: React.FC<DescriptionTableProps> = ({ content:description, specifiedKeys }:DescriptionTableProps ) => {
 
-    const keys = allowedKeys.filter((key) => originalkeys.includes(key));
+
+    const originalKeys = Object.keys(description);
+    console.log(originalKeys.toString())
+    const keys = allowedKeys.filter((key) => originalKeys.includes(key));
 
     let DisplayData = keys.map((key, index) => {
         const keyTitle = key
