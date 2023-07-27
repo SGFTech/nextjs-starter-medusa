@@ -15,6 +15,7 @@ type ProductTabsProps = {
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
+  const content = useDetailedContent("product", product.id)
   const tabs = useMemo(() => {
     return [
       {
@@ -28,7 +29,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       },
     ]
   }, [product])
-  const content = useDetailedContent("product", product.id)
+  
   return (
     <div>
       <Tab.Group>

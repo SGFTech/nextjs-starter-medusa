@@ -7,6 +7,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
+import { RazorpayPaymentButton } from "./razorpay-payment-button"
 
 type PaymentButtonProps = {
   paymentSession?: PaymentSession | null
@@ -53,7 +54,12 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
       return (
         <PayPalPaymentButton notReady={notReady} session={paymentSession} />
       )
-    default:
+      case "razorpay":
+        return (
+          <RazorpayPaymentButton notReady={notReady} session={paymentSession} />
+        )
+      
+      default:
       return <Button disabled>Select a payment method</Button>
   }
 }
@@ -219,6 +225,9 @@ const PayPalPaymentButton = ({
     </PayPalScriptProvider>
   )
 }
+
+
+
 
 const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   const [submitting, setSubmitting] = useState(false)

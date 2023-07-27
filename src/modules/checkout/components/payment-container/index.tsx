@@ -4,6 +4,7 @@ import clsx from "clsx"
 import React from "react"
 import PaymentStripe from "../payment-stripe"
 import PaymentTest from "../payment-test"
+import PaymentRazorpay from "../payment-razorpay_reference"
 
 type PaymentContainerProps = {
   paymentSession: PaymentSession
@@ -13,6 +14,8 @@ type PaymentContainerProps = {
 }
 
 const PaymentInfoMap: Record<string, { title: string; description: string }> = {
+  /* ToDo replace with automatic detection */
+
   stripe: {
     title: "Credit card",
     description: "Secure payment with credit card",
@@ -24,6 +27,14 @@ const PaymentInfoMap: Record<string, { title: string; description: string }> = {
   paypal: {
     title: "PayPal",
     description: "Secure payment with PayPal",
+  },
+  razorpay: {
+    title: "razorpay",
+    description: "Test payment using medusa-payment-manual",
+  },
+  phonepe: {
+    title: "phonepe",
+    description: "Test payment using medusa-payment-manual",
   },
   manual: {
     title: "Test payment",
@@ -37,6 +48,8 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
   setSelected,
   disabled = false,
 }) => {
+
+
   return (
     <div
       className={clsx(
@@ -82,6 +95,20 @@ const PaymentElement = ({
           <PaymentStripe />
         </div>
       )
+    case "razorpay":
+        return (
+          <div className="pt-8 pr-7">
+            <PaymentRazorpay />
+          </div>
+        )
+    case "phonepe":
+          return (
+            <div className="pt-8 pr-7">
+              <PaymentRazorpay />
+            </div>
+          )
+        
+
     case "manual":
       // We only display the test payment form if we are in a development environment
       return process.env.NODE_ENV === "development" ? <PaymentTest /> : null
