@@ -8,7 +8,7 @@ type Props = {
 const BASEURL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:8000"
 
 async function getCollection(handle: string,locale:String) {
-  console.log(handle)
+  
   const res = await fetch(`${BASEURL}/${locale}/collections?handle=${handle}`)
 
   if (!res.ok) {

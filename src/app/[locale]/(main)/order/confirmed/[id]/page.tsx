@@ -42,16 +42,14 @@ async function getOrder(id: string) {
 }*/
 
 export default async function CollectionPage({ params }: Props) {
-  const orderRes = await getOrder(params.id)
-  useEffect(()=>
-  {
-    if(!orderRes)
-    {
-      redirect("/not-found")
-    }
-
-  },[orderRes])
-  
+  let orderRes:any;
+  try {
+   orderRes = await getOrder(params.id)
+  }
+  catch(e){
+    orderRes=undefined
+  }
+ 
 
 
   return <OrderCompletedTemplate order={orderRes.order} />

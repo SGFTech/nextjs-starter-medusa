@@ -4,7 +4,6 @@ import clsx from "clsx"
 import React from "react"
 import PaymentStripe from "../payment-stripe"
 import PaymentTest from "../payment-test"
-import PaymentRazorpay from "../payment-razorpay_reference"
 
 type PaymentContainerProps = {
   paymentSession: PaymentSession
@@ -29,12 +28,12 @@ const PaymentInfoMap: Record<string, { title: string; description: string }> = {
     description: "Secure payment with PayPal",
   },
   razorpay: {
-    title: "razorpay",
-    description: "Test payment using medusa-payment-manual",
+    title: "Razorpay",
+    description: "Razorpay payment gateway",
   },
   phonepe: {
-    title: "phonepe",
-    description: "Test payment using medusa-payment-manual",
+    title: "PhonePe",
+    description: "Phone pe payment gateway",
   },
   manual: {
     title: "Test payment",
@@ -96,17 +95,9 @@ const PaymentElement = ({
         </div>
       )
     case "razorpay":
-        return (
-          <div className="pt-8 pr-7">
-            <PaymentRazorpay />
-          </div>
-        )
+        return <></>
     case "phonepe":
-          return (
-            <div className="pt-8 pr-7">
-              <PaymentRazorpay />
-            </div>
-          )
+      return <></>
         
 
     case "manual":
