@@ -1,6 +1,7 @@
 import { medusaClient } from "@lib/config";
 import medusaRequest from "@lib/medusa-fetch";
 import { createPostCheckSumHeader } from "@lib/util/phonepe-create-post-checksum-header";
+import { PaymentCollection } from "@medusajs/medusa";
 import { NextApiRequest, NextApiResponse } from "next";
 import { PaymentResponse, PaymentStatusCodeValues } from "types/phonepe-types";
 
@@ -15,7 +16,9 @@ const {checksum} = createPostCheckSumHeader(bodyResponse)
 if(checksum == receivedChecksum && bodyResponse.code == PaymentStatusCodeValues.PAYMENT_SUCCESS)
 {
     const cartId = bodyResponse.data.merchantTransactionId
-    const result = await medusaClient.carts.complete(cartId)    
+    //const result = await medusaClient.carts.complete(cartId)    
+    const {cart} = await medusaClient.carts.retrieve(cartId)
+    await medusaClient.carts.complete(cart.id)
     const order = await medusaClient.orders.retrieveByCartId(cartId)
     response.redirect(`/order/confirmed/${order.order.id}`)
 }
