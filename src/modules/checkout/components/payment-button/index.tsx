@@ -8,6 +8,7 @@ import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
 import { RazorpayPaymentButton } from "./razorpay-payment-button"
+import { PhonePePaymentButton } from "./phonepe-payment-button"
 
 type PaymentButtonProps = {
   paymentSession?: PaymentSession | null
@@ -58,7 +59,12 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
         return (
           <RazorpayPaymentButton notReady={notReady} session={paymentSession} />
         )
-      
+      case "phonepe":
+        return (
+          <PhonePePaymentButton notReady={notReady} session={paymentSession} />
+        )
+        
+  
       default:
       return <Button disabled>Select a payment method</Button>
   }
