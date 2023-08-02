@@ -77,7 +77,7 @@ export const RazorpayPaymentButton = ({
                 "address": cart.billing_address,
                 "order_notes":session.data.notes
               },
-              callback_url:`${process.env.MEDUSA_BACKEND_URL}/hook/razorpay`,
+              callback_url:`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/hook/razorpay`,
               "theme": {
                 "color":  process.env.NEXT_PUBLIC_SHOP_COLOUR ?? "00000"
               }
